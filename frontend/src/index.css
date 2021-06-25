@@ -1,0 +1,48 @@
+*{
+  margin:0;
+  padding: 0;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#Header{
+  background: #fff;
+  box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+  color: #8f8f8f;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.logo{
+  float: left;
+  height: auto;
+  font-size: 2rem;
+}
+
+.navbar {
+  float: right;
+}
+
+.banner {
+  height: 600px;
+  width: 100%;
+}
+
+#Content {
+  overflow-y: scroll;
+}
+
+#Footer {
+  border-top: 1px solid rgb(223, 222, 222);
+  box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
+  color: #8f8f8f;
+  z-index: 1;
+}

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Layout} from 'antd'
+import { Layout } from 'antd'
 import HeaderComponent from '../Components/HeaderComponent';
-import Banner from '../Components/Home/banner';
+import ContentComponent from '../Components/ContentComponent';
+
 
 const { Footer, Content } = Layout;
 
@@ -9,34 +10,13 @@ const Main = () => {
 
     return (
         <Layout style={{ height: '100vh' }}>
-            <HeaderComponent/>
+            <HeaderComponent />
             <Content id='Content'>
-                <Banner/>
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
-                <h2>sfdsf</h2><br />
+                <ContentComponent></ContentComponent>
             </Content>
-            <Footer id='Footer'>Copyright @ 2021. All Right Reserved.</Footer>
+            <Footer id='Footer'>
+                Copyright @ 2021. Created By Abdul Qadeer.
+            </Footer>
         </Layout>
     )
 }

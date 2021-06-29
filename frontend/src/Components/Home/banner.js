@@ -1,33 +1,31 @@
 import React from 'react'
 import { Carousel } from 'antd';
+import Slide1 from '../../Assets/img/slide1.jpg'
+import Slide2 from '../../Assets/img/slide2.jpg'
+import Slide3 from '../../Assets/img/slide3.jpg'
+
 
 function onChange(a, b, c) {
     console.log(a, b, c);
 }
 
 const contentStyle = {
-    height: '500px',
     color: '#fff',
-    lineHeight: '160px',
     textAlign: 'center',
-    background: '#364d79',
 };
 
 
 export default function Banner() {
     return (
-        <Carousel className='banner' afterChange={onChange}>
+        <Carousel afterChange={onChange}>
             <div>
-                <h3 style={contentStyle}>1</h3>
+                <img className='carousal-img' src={Slide1} height='100%' width='100%'/>
             </div>
             <div>
-                <h3 style={contentStyle}>2</h3>
+                <img  className='carousal-img' src={Slide2} height='100%' width='100%'/>
             </div>
             <div>
-                <h3 style={contentStyle}>3</h3>
-            </div>
-            <div>
-                <h3 style={contentStyle}>4</h3>
+                <img  className='carousal-img' src={Slide3} height='100%' width='100%'/>
             </div>
         </Carousel>
     )

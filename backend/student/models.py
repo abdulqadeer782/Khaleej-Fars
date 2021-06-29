@@ -3,6 +3,7 @@ from django.db import models
 from parents.models import Parent
 
 
+
 class Student(models.Model):
 
     fname = models.CharField(max_length=100)
@@ -17,3 +18,9 @@ class Student(models.Model):
 
     def __str__(self):
         return self.fname + self.lname
+
+    class Meta:
+        db_table = 'student'
+        managed = True
+        verbose_name = 'Student'
+        verbose_name_plural = 'Students'

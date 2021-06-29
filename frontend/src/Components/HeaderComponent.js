@@ -1,21 +1,21 @@
-import React,{useState} from 'react'
-import { Layout,Drawer } from 'antd'
+import React, { useState } from 'react'
+import { Layout, Drawer } from 'antd'
 import { useMediaQuery } from 'react-responsive'
 import MenuItems from './MenuItems';
-import {MenuOutlined} from '@ant-design/icons'
-
+import { MenuOutlined } from '@ant-design/icons'
+import IgateLogo from '../Assets/img/IgateLogo.png'
 
 const { Header } = Layout;
 
 const style = {
-    fontSize : '2rem',
+    fontSize: '2rem',
     paddingTop: '15px',
-    float:"right"
+    float: "right"
 }
 
 export default function HeaderComponent() {
 
-    const [isToggled,setIsToggled] = useState(false)
+    const [isToggled, setIsToggled] = useState(false)
 
     // mediaquey
     const is_mobile = useMediaQuery({
@@ -32,30 +32,24 @@ export default function HeaderComponent() {
     }
 
     return (
-        <Header id='Header' style={{ backgroundColor: "#fff" }}>
-            <div className='container'>
-                <Header id='Header' style={{ backgroundColor: "#fff" }}>
-                    <div className="logo">
-                        Khaleej Fars
-                    </div>
-                    
-                    {is_mobile? 
-                        <MenuItems mode='horizontal'/> : <MenuOutlined onClick={menuToggle} style={style}/>
-                    }
-                    <Drawer
-                        placement="left"
-                        onClose={onClose}
-                        width={150}
-                        mask={true}
-                        closable={true}
-                        visible={isToggled}
-                    >
-                        <MenuItems mode='vertical'/>
-
-                    </Drawer>
-
-                </Header>
+        <Header id='Header' >
+            <div className="logo">
+                <img src={IgateLogo} height="50" alt="" />
             </div>
+
+            {is_mobile ?
+                <MenuItems mode='horizontal' /> : <MenuOutlined onClick={menuToggle} style={style} />
+            }
+            <Drawer
+                placement="left"
+                onClose={onClose}
+                width={150}
+                mask={true}
+                closable={true}
+                visible={isToggled}
+            >
+                <MenuItems mode='vertical' />
+            </Drawer>
         </Header>
     )
 }

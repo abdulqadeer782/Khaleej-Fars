@@ -45,11 +45,16 @@ INSTALLED_APPS = [
     'test',
     'parents',
     'users',
+    'classroom',
 
 
     # django rest framework
-    'rest_framework'
+    'rest_framework',
+
+    
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,6 +140,10 @@ TIME_INPUT_FORMATS = [
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 

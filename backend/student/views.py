@@ -1,11 +1,11 @@
-from django.http.response import Http404
-from django.shortcuts import render,HttpResponse
+from .models import Student
+from .serializers import StudentSerializer
+from django.http import HttpResponse
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+class StudentView(ModelViewSet):
+    
+    serializer_class = StudentSerializer
+    queryset = Student.objects.all()
 
-
-def StudentView(request):
-
-
-
-    return HttpResponse('page not found')
+  

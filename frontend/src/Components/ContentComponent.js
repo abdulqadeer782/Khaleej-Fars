@@ -1,46 +1,75 @@
-import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
-import Home from '../Pages/Home'
+import { Link, Redirect, Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { Content } from "antd/es/layout/layout";
+import { useState, useEffect } from 'react'
+import { capitalize } from "lodash"
+import Dashboard from "../Pages/Dashboard";
+import { loggedIn } from "../common/loggedIn.js";
+import LoginPage from "../Pages/LoginPage";
+import ForgotPasswordPage from "../Pages/ForgotPassPage";
+import NotFound from "../Pages/notFound";
+import { Breadcrumb,Divider } from "antd";
+import Profile from "../Pages/Profile";
 
 
 const ContentComponent = () => {
-    return (
-        <Switch>
-            <RestrictRoute exact to='/'>
-                <Home />
-            </RestrictRoute>
-            <PublicRoute exact to='/login'>
-                <h1>login</h1>
-            </PublicRoute>
-        </Switch>
+    const history = useHistory()
+    const location = useLocation()
+    const [pathname, setPathname] = useState()
 
+
+    useEffect(() => {
+        setPathname(capitalize(location.pathname.replace("/", '')))
+    }, [location])
+
+    return (
+        <Content style={{ padding: '20px 20px 0',minHeight:'85%'}}>
+                <Switch>
+                    <PublicRoute path="/sign-in" component={LoginPage} />
+                    <PublicRoute path="/forgot-password" component={ForgotPasswordPage} />
+                    <PrivateRoute exact path='/' >
+                        <Dashboard />
+                    </PrivateRoute>
+                    <PrivateRoute path='/profile' >
+                        <Profile/>
+                    </PrivateRoute>
+                    <PrivateRoute>
+                        <NotFound/>
+                    </PrivateRoute>
+                </Switch>
+        </Content>
     )
 }
 
 
-
-export default ContentComponent;
-
-const loggedIn = true
-
-const RestrictRoute = ({ children, ...rest }) => {
-
+function PrivateRoute({ children, ...rest }) {
+    const [path] = useState("/sign-in")
     return (
         <Route
             {...rest}
-            render={() =>
-                loggedIn ? children : <Redirect to='/login' />
+            render={({ location }) =>
+                loggedIn() ? (
+                    children
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: path,
+                            state: { from: location }
+                        }}
+                    />
+                )
             }
         />
-    )
+    );
 }
 
-const PublicRoute = ({ children, ...rest }) => {
-
+function PublicRoute({ component: Component, ...rest }) {
+    // console.log(loggedIn())
     return (
         <Route
             {...rest}
-            render={() => !loggedIn ? children : <Redirect to='/' />}
+            render={(props) => !loggedIn() ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />}
         />
     )
 }
+
+export default ContentComponent

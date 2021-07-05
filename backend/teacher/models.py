@@ -12,6 +12,7 @@ class Teacher(models.Model):
     password = models.CharField(max_length=150)
     dob = models.DateField()
     mobile = models.BigIntegerField()
+    joining = models.DateField(default=datetime.now)
     created_at = models.DateTimeField(default=datetime.now)
     updated_at = models.DateTimeField(default=datetime.now)
 

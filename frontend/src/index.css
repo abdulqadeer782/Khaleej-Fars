@@ -1,53 +1,114 @@
-*{
-  margin:0;
+body{
+  margin: 0;
   padding: 0;
 }
-
-body{
-  font-family: 'Roboto', sans-serif;
+.site-layout-background {
+  background: #fff;
 }
 
+.hideOnMobile {
+  display: none;
+}
 
 #Header{
-  background: none;
+  background: #fff;
   box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
   color: #8f8f8f;
+  height: 70px;
+  line-height: 70px;
   z-index: 1;
-  padding: 0;
-  margin: 0;
+}
+
+#Sidebar {
+  box-shadow: 0 3px 30px rgb(0 0 0 / 10%), 0 3px 20px rgb(0 0 0 / 10%);
+  /* border-radius: 0 15px 15px 0; */
+  background: #fff;
 }
 
 .logo{
-  float: left;
-  height: auto;
-  font-size: 2rem;
+  height: 50px;
+  width: 50px;
+  margin: auto;
 }
 
-.navbar {
-  float: right;
-}
-
-#Content {
-  /* overflow-y: scroll; */
-}
-
-.banner {
-  height: 600px; 
+#AuthBack{
+  background-color: #ebebeb;
+  background-size: cover;
   width: 100%;
-  background-image: url('./Assets/img/new.jpg');
-  background-size: 100% 50%;
-  background-repeat: no-repeat;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+}
+
+.login-content {
+  margin-top: 10%;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 5px 30px 55px;
+  font-size: 1.3rem;
+  box-shadow: 1px 1px 20px -5px black;
 }
 
 
-#Footer {
-  border-top: 1px solid rgb(223, 222, 222);
-  box-shadow: 0 1px 15px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 4%);
-  color: #8f8f8f;
-  text-align: center;
+
+
+.trigger {
+  font-size: 1.3rem;
+}
+.Avatar {
+  font-size: 5rem;
 }
 
-.carousal-img {
-  height: 500px;
-  width: 100%;
+
+.table-row-light {
+  background-color: #ffffff;
+}
+.table-row-dark {
+  background-color: #d1d1d1a9;
+}
+
+a.link:hover {
+  /*Any style you want to have link on mouse over*/
+  background-color: yellow;
+}
+
+/* Media Query */
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  .login-page-content-left{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0;
+  }
+  .login-page-content {
+    margin-top: 7%;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+
+  .login-page-content-left{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0;
+  }
+  .login-page-content {
+    margin-top: 7%;
+  }
+  
+}
+
+
+@media screen and (min-width:768px){
+  .hideOnMobile {
+    display: block;
+  }
+  .hideOnDesktop {
+    display: none;
+  }
 }

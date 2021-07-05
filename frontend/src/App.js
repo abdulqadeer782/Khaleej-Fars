@@ -1,13 +1,18 @@
-import './App.css';
-import Main from './Pages/Main';
-import { BrowserRouter as Router } from 'react-router-dom';
 
+import './App.less';
+import Main from './Pages/Main';
+import { BrowserRouter } from 'react-router-dom';
+import {Provider} from 'react-redux'
+import {store} from './store';
 
 function App() {
+  
   return (
-    <Router>
+    <BrowserRouter>
+      <Provider store={store}>
         <Main/>
-    </Router>
+      </Provider>
+    </BrowserRouter>
   );
 }
 

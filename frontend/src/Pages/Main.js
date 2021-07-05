@@ -1,25 +1,44 @@
-import React from 'react'
-import { Layout } from 'antd'
-import HeaderComponent from '../Components/HeaderComponent';
-import ContentComponent from '../Components/ContentComponent';
+import React, { useState, Fragment } from "react";
+import { Divider, Layout, Menu, Space } from "antd";
+
+import HeaderComponent from "../Components/HeaderComponent";
+import MenuComponent from "../Components/MenuComponent";
+import ContentComponent from "../Components/ContentComponent";
+import { useLocation } from 'react-router-dom'
 
 
-const { Footer, Content } = Layout;
+const { Content, Footer } = Layout;
 
-const Main = () => {
+function Main() {
+  const location = useLocation()
+  const [collapsed, setCollapsed] = useState(false)
 
-    return (
-        <Layout style={{ height: '100vh' }}>
-            <HeaderComponent />
-            <Content id='Content'>
-                <ContentComponent></ContentComponent>
-            </Content>
-            <Footer id='Footer'>
-                Copyright @ 2021. Created By Abdul Qadeer.
-            </Footer>
-        </Layout>
-    )
+  const toggle = () => {
+    setCollapsed(!collapsed)
+  };
+
+  const onClose = () => {
+    setCollapsed(false);
+  }
+  return (
+
+    <Layout style={{ height: '100vh' }}>
+      {sessionStorage.getItem('token') ?
+        <HeaderComponent toggle={toggle} setCollapsed={setCollapsed} collapsed={collapsed} /> : ''}
+            <Layout>
+              {sessionStorage.getItem('token') ?
+                <MenuComponent collapsed={collapsed} onClose={onClose} /> : ''}
+              <Content style={{ overflowY: 'scroll',background:'#ebebeb'}}>
+                <ContentComponent />
+                <Divider />
+                <Footer style={{ color: '#8f8f8f',background:'none' }}>Copyright @ 2021.Developed By Abdul Qadeer.  </Footer>
+              </Content>
+            </Layout>
+    </Layout>
+
+
+
+  );
 }
-
 
 export default Main;

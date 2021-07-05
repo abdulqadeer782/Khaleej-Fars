@@ -1,55 +1,75 @@
-import React, { useState } from 'react'
-import { Layout, Drawer } from 'antd'
-import { useMediaQuery } from 'react-responsive'
-import MenuItems from './MenuItems';
-import { MenuOutlined } from '@ant-design/icons'
-import IgateLogo from '../Assets/img/IgateLogo.png'
+import React, { useState } from "react";
+import { Layout, Menu, Row, Col ,Dropdown,Divider} from "antd";
+import {
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    UserOutlined
+} from "@ant-design/icons";
 
-const { Header } = Layout;
+import { Link, useHistory } from 'react-router-dom'
+import Avatar from "antd/lib/avatar/avatar";
+import logoImg from '../Assets/img/logo.png'
 
-const style = {
-    fontSize: '2rem',
-    paddingTop: '15px',
-    float: "right"
-}
 
-export default function HeaderComponent() {
+const { Header } = Layout
 
-    const [isToggled, setIsToggled] = useState(false)
 
-    // mediaquey
-    const is_mobile = useMediaQuery({
-        query: '(min-width:768px)'
-    })
 
-    const menuToggle = () => {
-        setIsToggled(true)
-        console.log('working')
+
+const HeaderComponent = ({ collapsed, toggle }) => {
+
+    const history = useHistory()
+
+    
+
+    const logOut = () => {
+        sessionStorage.clear('token')
+        history.push('/sign-in')
     }
 
-    const onClose = () => {
-        setIsToggled(false)
-    }
+
+    // menu for user icon right side
+    const menu = (
+        <Menu style={{width:"150px",float:'right' }}>
+            <Menu.Item key='profile'>
+                <Link to='/profile'>Profile</Link>
+            </Menu.Item>
+            <hr style={{color: '#8f8f8f' }}/>
+            <Menu.Item key='logout' onClick={logOut}>Signout</Menu.Item>
+        </Menu>
+    )
 
     return (
-        <Header id='Header' >
-            <div className="logo">
-                <img src={IgateLogo} height="50" alt="" />
-            </div>
-
-            {is_mobile ?
-                <MenuItems mode='horizontal' /> : <MenuOutlined onClick={menuToggle} style={style} />
-            }
-            <Drawer
-                placement="left"
-                onClose={onClose}
-                width={150}
-                mask={true}
-                closable={true}
-                visible={isToggled}
-            >
-                <MenuItems mode='vertical' />
-            </Drawer>
+        <Header id='Header'>
+            <Row>
+                <Col span={8}>
+                    {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                        className: 'trigger',
+                        onClick: toggle,
+                    })}
+                </Col>
+                <Col span={8}>
+                    <div className='logo'>
+                        <img src={logoImg} alt="dsaf" height='100%' width='100%' />
+                    </div>
+                </Col>
+                <Col span={8} style={{ textAlign: 'right' }}>
+                    
+                     <Dropdown overlay={menu} trigger={['click']}>
+                        <div>
+                            <span id='iconMenu' style={{ color: '#999', marginRight: 4,cursor:'pointer' }}>
+                                Hi ,Admin
+                            <Avatar icon={<UserOutlined/>} size='large' style={{ marginLeft: 8 }} /> 
+                        </span>       
+                    </div>
+                    </Dropdown>
+                </Col>
+            </Row>
         </Header>
     )
 }
+
+export default HeaderComponent
+
+
+

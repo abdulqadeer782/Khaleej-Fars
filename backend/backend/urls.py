@@ -18,6 +18,13 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+
+
+admin.site.site_title = 'Al Khaleej Farse'
+admin.site.site_header = 'Al Khaleej Farse'
+admin.site.index_title = 'Welcome to Al Khaleej Farse'
+
 
 
 urlpatterns = [

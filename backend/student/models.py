@@ -1,6 +1,7 @@
 from django.utils.timezone import datetime
 from django.db import models
 from parents.models import Parent
+from django.contrib.humanize.templatetags import humanize
 
 
 
@@ -13,11 +14,14 @@ class Student(models.Model):
     dob = models.DateTimeField(default=datetime.now)
     parent = models.ForeignKey(Parent,on_delete=models.CASCADE)
     mobile = models.BigIntegerField()
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
         return self.fname + self.lname
+
+    def get_date(self):
+        return humanize.naturaltime(self.date)
 
     class Meta:
         db_table = 'student'

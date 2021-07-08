@@ -21,6 +21,7 @@ class ClassSchedule(models.Model):
     class_timing = models.DateTimeField()
 
     def __str__(self):
-        return self.class_timing
+        return "class {}".format(self.class_id)
+    
     class Meta:
         db_table = 'classes_schedule'

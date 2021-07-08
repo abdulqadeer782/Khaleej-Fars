@@ -13,6 +13,7 @@ class Teacher(models.Model):
     dob = models.DateField()
     mobile = models.BigIntegerField()
     joining = models.DateField(default=datetime.now)
+    # salary = models.IntegerField()
     created_at = models.DateTimeField(default=datetime.now)
     updated_at = models.DateTimeField(default=datetime.now)
 

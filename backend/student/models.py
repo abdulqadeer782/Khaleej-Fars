@@ -13,6 +13,7 @@ class Student(models.Model):
     password = models.CharField(max_length=150)
     dob = models.DateTimeField(default=datetime.now)
     parent = models.ForeignKey(Parent,on_delete=models.CASCADE)
+    admission_date = models.DateTimeField(default=datetime.now)
     mobile = models.BigIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(default=datetime.now)
